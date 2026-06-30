@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PandaHub | Ultimate Roblox Scripts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            950: '#0b071e',
+                        },
+                        dark: {
+                            950: '#07090e',
+                            900: '#0f111a',
+                            800: '#171a26',
+                            700: '#222638',
+                        }
+                    },
+                    boxShadow: {
+                        'neon-purple': '0 0 20px rgba(139, 92, 246, 0.4)',
+                        'neon-green': '0 0 20px rgba(16, 185, 129, 0.4)',
+                        'neon-purple-lg': '0 0 40px rgba(139, 92, 246, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f111a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222638;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+        .glow-orb {
+            filter: blur(120px);
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body class="bg-dark-950 text-slate-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- Glowing Background Orbs -->
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand-600 rounded-full glow-orb -z-10"></div>
+    <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-emerald-600 rounded-full glow-orb -z-10"></div>
+    <div class="absolute bottom-1/4 left-10 w-[600px] h-[600px] bg-indigo-800 rounded-full glow-orb -z-10"></div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-dark-950/80 border-b border-slate-800/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-brand-600 to-indigo-500 p-2.5 rounded-xl shadow-neon-purple">
+                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 2a10 10 0 0 0-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10A10 10 0 0 0 12 2z"/>
+                        <path d="M12 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-3 4.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM12 15a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+                    </svg>
+                </div>
+                <span class="font-heading font-bold text-2xl tracking-tight bg-gradient-to-r from-white via-slate-100 to-brand-500 bg-clip-text text-transparent">Panda<span class="text-brand-500">Hub</span></span>
+            </div>
+            
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-brand-500 transition-colors">Features</a>
+                <a href="#scripts" class="hover:text-brand-500 transition-colors">Scripts</a>
+                <a href="#how-to" class="hover:text-brand-500 transition-colors">How to Use</a>
+                <a href="#faq" class="hover:text-brand-500 transition-colors">FAQ</a>
+            </div>
+
+            <!-- Discord Button (Main CTA) -->
+            <div>
+                <a href="https://discord.gg/9r6hp7svtK" target="_blank" rel="noopener noreferrer" class="relative inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold shadow-neon-purple hover:shadow-neon-purple-lg transition-all duration-300 transform hover:-translate-y-0.5 group">
+                    <i data-lucide="message-square" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+                    <span>Discord</span>
+                    <span class="absolute top-0 right-0 flex h-3 w-3 -mt-1 -mr-1">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-950/80 border border-brand-500/30 text-brand-100 text-xs sm:text-sm font-medium backdrop-blur">
+                        <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>V2 Release: Over 50+ Games Supported</span>
+                    </div>
+                    
+                    <h1 class="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-none tracking-tight">
+                        Elevate Your <br class="hidden sm:inline">
+                        <span class="bg-gradient-to-r from-brand-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">Roblox Experience</span>
+                    </h1>
+                    
+                    <p class="text-slate-400 text-base sm:text-xl max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        PandaHub delivers premium, undetected, and highly optimized scripts for your favorite Roblox games. Fast execution, regular updates, and completely free.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <!-- Primary Purple Discord Button -->
+                        <a href="https://discord.gg/9r6hp7svtK" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 px-8 py-4 bg-brand-600 hover:bg-brand-500 text-white text-lg font-bold rounded-2xl shadow-neon-purple hover:shadow-neon-purple-lg transition-all duration-300 transform hover:-translate-y-1 group">
+                            <i data-lucide="message-square" class="w-6 h-6 fill-white/20 group-hover:scale-110 transition-transform"></i>
+                            <span>Join Our Discord</span>
+                        </a>
+                        <!-- Secondary Explore Button -->
+                        <a href="#scripts" class="flex items-center justify-center gap-2 px-8 py-4 bg-dark-800 hover:bg-dark-700 border border-slate-700/80 hover:border-slate-600 text-slate-200 text-lg font-semibold rounded-2xl transition-all duration-300">
+                            <span>Explore Scripts</span>
+                            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+                        <div class="p-3 rounded-xl bg-dark-900/40 border border-slate-800/50">
+                            <div class="text-2xl font-bold text-brand-400">150K+</div>
+                            <div class="text-xs text-slate-500">Active Users</div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-dark-900/40 border border-slate-800/50">
+                            <div class="text-2xl font-bold text-emerald-400">99.9%</div>
+                            <div class="text-xs text-slate-500">Uptime Rate</div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-dark-900/40 border border-slate-800/50">
+                            <div class="text-2xl font-bold text-indigo-400">0%</div>
+                            <div class="text-xs text-slate-500">Ban Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Visual (Interactive Script Mockup) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-[420px] lg:max-w-none">
+                        <!-- Decorative background glow -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-600 to-indigo-600 rounded-3xl blur-2xl opacity-30 -z-10"></div>
+                        
+                        <!-- Main UI Mockup Window -->
+                        <div class="bg-dark-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+                            <!-- Window Header -->
+                            <div class="bg-dark-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                    <span class="text-xs text-slate-500 font-mono ml-2">PandaHub_v2.0.lua</span>
+                                </div>
+                                <span class="px-2 py-0.5 text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-md font-medium">Active</span>
+                            </div>
+                            
+                            <!-- Window Content -->
+                            <div class="p-5 space-y-4 font-mono text-xs text-slate-400">
+                                <div class="space-y-1">
+                                    <p class="text-brand-400">-- Loading PandaHub Framework...</p>
+                                    <p class="text-slate-500">Checking execution environment...</p>
+                                    <p class="text-emerald-400">✓ Executor supported (Solara, Wave, Celery)</p>
+                                </div>
+                                
+                                <div class="bg-dark-950 p-3 rounded-lg border border-slate-800 space-y-2">
+                                    <div class="flex justify-between items-center text-slate-300 border-b border-slate-800 pb-1.5">
+                                        <span>Auto Farm Level</span>
+                                        <span class="text-emerald-400 font-bold">ENABLED</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-slate-300 border-b border-slate-800 pb-1.5">
+                                        <span>Aimbot & ESP</span>
+                                        <span class="text-emerald-400 font-bold">ENABLED</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-slate-300">
+                                        <span>Anti-Cheat Bypass</span>
+                                        <span class="text-brand-400">SECURE</span>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-1">
+                                    <p class="text-slate-500">[Info] Auto-updating script database...</p>
+                                    <p class="text-indigo-400">Ready to execute. Enjoy your gameplay!</p>
+                                </div>
+
+                                <!-- Decorative Execution Button -->
+                                <button onclick="scrollToScripts()" class="w-full py-2.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-all flex items-center justify-center gap-2 shadow-lg">
+                                    <i data-lucide="play" class="w-4 h-4 fill-white"></i>
+                                    <span>Browse Script Library</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Why Us / Features Section -->
+    <section id="features" class="py-20 bg-dark-900/60 border-y border-slate-800/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="font-heading font-bold text-3xl sm:text-5xl text-white">Why Choose PandaHub?</h2>
+                <p class="text-slate-400 text-base sm:text-lg">We engineer our script interfaces to be fast, reliable, and completely undetected, providing the ultimate edge over competitors.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 rounded-2xl bg-dark-950/60 border border-slate-800 hover:border-brand-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-white mb-2">100% Undetected</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Our advanced anti-cheat bypass technologies ensure you remain safe across all games. We update code daily to prevent detections.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-8 rounded-2xl bg-dark-950/60 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-white mb-2">Ultra-Fast Execution</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Highly-optimized code that runs perfectly even on low-end PCs. Minimal lag, zero drops, maximum performance.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-8 rounded-2xl bg-dark-950/60 border border-slate-800 hover:border-indigo-500/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-white mb-2">Auto-Updates</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Game updated? No problem. Our cloud system syncs script updates automatically so you never have to re-copy scripts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts Section (Interactive Search & Library) -->
+    <section id="scripts" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div class="space-y-3">
+                <span class="text-brand-400 font-semibold tracking-wider uppercase text-sm">Script Library</span>
+                <h2 class="font-heading font-bold text-3xl sm:text-5xl text-white">Find Your Game Script</h2>
+            </div>
+            
+            <!-- Search & Filter Controls -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                <div class="relative flex-grow sm:w-80">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 w-5 h-5"></i>
+                    <input type="text" id="searchInput" placeholder="Search games or scripts..." class="w-full bg-dark-900 border border-slate-800 focus:border-brand-500 rounded-xl py-3 pl-12 pr-4 text-sm text-slate-200 placeholder-slate-500 outline-none transition-all">
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="flex flex-wrap gap-2.5 mb-8" id="categoryContainer">
+            <button onclick="filterCategory('All')" class="category-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 bg-brand-600 text-white transition-all">All Games</button>
+            <button onclick="filterCategory('Popular')" class="category-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 bg-dark-900 text-slate-400 hover:text-white hover:border-slate-700 transition-all">Popular</button>
+            <button onclick="filterCategory('RPG')" class="category-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 bg-dark-900 text-slate-400 hover:text-white hover:border-slate-700 transition-all">RPG</button>
+            <button onclick="filterCategory('Shooter')" class="category-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 bg-dark-900 text-slate-400 hover:text-white hover:border-slate-700 transition-all">Shooter</button>
+            <button onclick="filterCategory('Simulator')" class="category-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 bg-dark-900 text-slate-400 hover:text-white hover:border-slate-700 transition-all">Simulator</button>
+        </div>
+
+        <!-- Scripts Grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="scriptsGrid">
+            <!-- Dynamic Injection of script cards from JS -->
+        </div>
+    </section>
+
+    <!-- How to Use Section (Interactive Steps) -->
+    <section id="how-to" class="py-20 bg-dark-900/40 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="font-heading font-bold text-3xl sm:text-5xl text-white">How To Get Started</h2>
+                <p class="text-slate-400 text-base sm:text-lg">Follow these simple steps to start executing PandaHub scripts in your game.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <!-- Step 1 -->
+                <div class="bg-dark-950/60 border border-slate-800/80 p-8 rounded-2xl relative">
+                    <span class="absolute -top-5 left-8 w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center font-heading font-bold text-lg text-white shadow-neon-purple">1</span>
+                    <h3 class="font-heading font-bold text-xl text-white mb-3 mt-2">Get Executor</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Download and install a reliable Roblox executor of your choice. Ensure it is fully updated and running.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-dark-950/60 border border-slate-800/80 p-8 rounded-2xl relative">
+                    <span class="absolute -top-5 left-8 w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-heading font-bold text-lg text-white shadow-lg">2</span>
+                    <h3 class="font-heading font-bold text-xl text-white mb-3 mt-2">Copy Script</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Find your preferred game script above, click "Get Script", and copy our optimized cloud loadstring code.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-dark-950/60 border border-slate-800/80 p-8 rounded-2xl relative">
+                    <span class="absolute -top-5 left-8 w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center font-heading font-bold text-lg text-white shadow-neon-green">3</span>
+                    <h3 class="font-heading font-bold text-xl text-white mb-3 mt-2">Execute & Play</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Paste the loadstring into your executor, join the game, and hit execution. Control everything via our in-game UI.</p>
+                </div>
+            </div>
+
+            <!-- Bottom Discord Callout banner -->
+            <div class="mt-16 bg-gradient-to-r from-brand-950 via-brand-900 to-indigo-950 border border-brand-500/30 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-3 text-center md:text-left">
+                    <h3 class="font-heading font-bold text-2xl md:text-3xl text-white">Need Help or Key Information?</h3>
+                    <p class="text-slate-400 text-sm md:text-base max-w-xl">Join our vibrant Discord guild! Chat with active users, request new game scripts, and get 24/7 technical assistance.</p>
+                </div>
+                <a href="https://discord.gg/9r6hp7svtK" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-brand-600 hover:bg-brand-500 text-white text-lg font-bold rounded-2xl shadow-neon-purple hover:shadow-neon-purple-lg transition-all duration-300 transform hover:-translate-y-1 group shrink-0">
+                    <i data-lucide="message-square" class="w-6 h-6 fill-white/10 group-hover:scale-110 transition-transform"></i>
+                    <span>Discord Server</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 space-y-4">
+            <h2 class="font-heading font-bold text-3xl sm:text-5xl text-white">Frequently Asked Questions</h2>
+            <p class="text-slate-400 text-base">Got questions? We've got answers.</p>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="bg-dark-900 border border-slate-800/80 rounded-2xl overflow-hidden transition-all duration-300">
+                <button onclick="toggleFaq(1)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-semibold text-white hover:bg-slate-800/20 transition-all">
+                    <span>Is PandaHub completely free?</span>
+                    <i id="faq-icon-1" data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div id="faq-ans-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-800/40 pt-4">
+                        Yes, PandaHub is completely free to use. Some specialized scripts may have key-systems to support our hosting costs, but you can always acquire keys free of charge.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="bg-dark-900 border border-slate-800/80 rounded-2xl overflow-hidden transition-all duration-300">
+                <button onclick="toggleFaq(2)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-semibold text-white hover:bg-slate-800/20 transition-all">
+                    <span>Will I get banned for using these scripts?</span>
+                    <i id="faq-icon-2" data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div id="faq-ans-2" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-800/40 pt-4">
+                        Our development team utilizes custom execution bypass algorithms to ensure supreme safety. While no cheat is 100% risk-free, we maintain a near-zero ban rate.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="bg-dark-900 border border-slate-800/80 rounded-2xl overflow-hidden transition-all duration-300">
+                <button onclick="toggleFaq(3)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-semibold text-white hover:bg-slate-800/20 transition-all">
+                    <span>Which executors do you support?</span>
+                    <i id="faq-icon-3" data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div id="faq-ans-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-800/40 pt-4">
+                        PandaHub supports all major level 7/8 executors including Solara, Wave, Celery, Synapse Z, and major mobile emulators/executors.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="bg-dark-900 border border-slate-800/80 rounded-2xl overflow-hidden transition-all duration-300">
+                <button onclick="toggleFaq(4)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-heading font-semibold text-white hover:bg-slate-800/20 transition-all">
+                    <span>How can I request a script for a specific game?</span>
+                    <i id="faq-icon-4" data-lucide="chevron-down" class="w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div id="faq-ans-4" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="px-6 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-800/40 pt-4">
+                        You can easily request script additions by joining our Discord server and posting in the #script-requests channel. Our active community and developers check suggestions daily!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-950 border-t border-slate-800/80 pt-16 pb-8 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Col 1: Logo and motto -->
+                <div class="space-y-4 md:col-span-2">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-gradient-to-tr from-brand-600 to-indigo-500 p-2 rounded-lg">
+                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 2a10 10 0 0 0-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10A10 10 0 0 0 12 2z"/>
+                                <path d="M12 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-3 4.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM12 15a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+                            </svg>
+                        </div>
+                        <span class="font-heading font-bold text-xl tracking-tight text-white">Panda<span class="text-brand-500">Hub</span></span>
+                    </div>
+                    <p class="max-w-sm text-slate-500 leading-relaxed">
+                        The ultimate Roblox script hub. Premium features, unmatched security, and optimal speeds. Built by gamers, for gamers.
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div class="space-y-3">
+                    <h4 class="font-heading font-bold text-white tracking-wide uppercase text-xs">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="hover:text-brand-400 transition-colors">Features</a></li>
+                        <li><a href="#scripts" class="hover:text-brand-400 transition-colors">Scripts</a></li>
+                        <li><a href="#how-to" class="hover:text-brand-400 transition-colors">How to Use</a></li>
+                        <li><a href="#faq" class="hover:text-brand-400 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Community -->
+                <div class="space-y-4">
+                    <h4 class="font-heading font-bold text-white tracking-wide uppercase text-xs">Join Us</h4>
+                    <p class="text-xs text-slate-500">Connect with thousand of other players and developers.</p>
+                    <a href="https://discord.gg/9r6hp7svtK" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-all shadow-neon-purple hover:shadow-neon-purple-lg">
+                        <i data-lucide="message-square" class="w-4 h-4"></i>
+                        <span>Discord Server</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="pt-8 border-t border-slate-800/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+                <p>&copy; 2024 PandaHub. All rights reserved.</p>
+                <p>We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Roblox Corporation.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- SCRIPT DETAIL MODAL -->
+    <div id="scriptModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark-950/80 backdrop-blur-md hidden transition-opacity duration-300 opacity-0">
+        <div class="bg-dark-900 border border-slate-800 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 bg-dark-950 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-400">
+                        <i data-lucide="code-2" class="w-5 h-5"></i>
+                    </div>
+                    <span id="modalTitle" class="font-heading font-bold text-lg text-white">Script Code</span>
+                </div>
+                <button onclick="closeModal()" class="text-slate-500 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-5">
+                <p class="text-slate-400 text-sm">Copy the following loadstring code and paste it inside your executor console.</p>
+                
+                <!-- Code Box -->
+                <div class="relative group">
+                    <pre class="bg-dark-950 border border-slate-800 rounded-xl p-4 overflow-x-auto text-xs font-mono text-brand-300 max-h-48 whitespace-pre-wrap break-all" id="scriptCodeBlock">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PandaHub/main/refs/heads/main/loader.lua"))()
+                    </pre>
+                    <button onclick="copyCode()" class="absolute right-3 top-3 bg-brand-600 hover:bg-brand-500 text-white p-2 rounded-lg transition-all flex items-center gap-2 text-xs font-semibold shadow-md">
+                        <i data-lucide="copy" class="w-4 h-4" id="copyBtnIcon"></i>
+                        <span id="copyBtnText">Copy Code</span>
+                    </button>
+                </div>
+
+                <!-- Instructions / Warnings -->
+                <div class="flex gap-3 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs leading-relaxed">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 shrink-0"></i>
+                    <p>Make sure to run your executor before copying and pasting this script. Do not share your execution sessions with anyone to maintain security.</p>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 bg-dark-950 border-t border-slate-800/80 flex justify-end gap-3">
+                <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-dark-800 hover:bg-dark-700 text-slate-300 text-sm font-semibold transition-all">Close</button>
+                <a href="https://discord.gg/9r6hp7svtK" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition-all flex items-center gap-2">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <span>Get Help on Discord</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-emerald-600 text-white px-5 py-3.5 rounded-xl shadow-neon-green transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+        <span class="font-medium text-sm">Code copied to clipboard successfully!</span>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Scripts Database
+        const scriptsData = [
+            {
+                id: 1,
+                title: "Blox Fruits Hub",
+                category: "RPG",
+                tags: ["OP Farm", "Auto Raid", "Teleports"],
+                status: "Undetected",
+                isPopular: true,
+                image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=400&auto=format&fit=crop",
+                loadstring: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PandaHub/main/refs/heads/main/bloxfruits.lua"))()'
+            },
+            {
+                id: 2,
+                title: "Blade Ball Aura",
+                category: "Popular",
+                tags: ["Auto Deflect", "Visuals", "No Lag"],
+                status: "Undetected",
+                isPopular: true,
+                image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400&auto=format&fit=crop",
+                loadstring: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PandaHub/main/refs/heads/main/bladeball.lua"))()'
+            },
+            {
+                id: 3,
+                title: "Pet Simulator 99 Infinite",
+                category: "Simulator",
+                tags: ["Auto Farm", "Auto Hatch", "Mailbox"],
+                status: "Undetected",
+                isPopular: true,
+                image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=400&auto=format&fit=crop",
+                loadstring: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PandaHub/main/refs/heads/main/petsim99.lua"))()'
+            },
+            {
+                id: 4,
+                title: "Bedwars Godmode",
+                category: "Shooter",
+                tags: ["Kill Aura", "Infinite Blocks", "Fly"],
+                status: "Updating",
+                isPopular: false,
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400&auto=format&fit=crop",
+                loadstring: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PandaHub/main/refs/heads/main/bedwars.lua"))()'
+            },
+            {
+                id: 5,
+                title: "Universal Aimbot & ESP",
+                category: "Shooter",
+                tags: ["All Games", "Silent Aim", "Wallhack"],
+                status: "Undetected",
+                isPopular: true,
+                image: "https://images.unsplash.com/photo-1553481187-be93c21490a9?q=80&w=400&auto=format&fit=crop",
+                loadstring: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PandaHub/main/refs/heads/main/universal.lua"))()'
+            },
+            {
+                id: 6,
+                title: "Murder Mystery 2 ESP",
+                category: "RPG",
+                tags: ["Show Murderer", "Gun Grabber", "Speed"],
+                status: "Undetected",
+                isPopular: false,
+                image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+                loadstring: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/PandaHub/main/refs/heads/main/mm2.lua"))()'
+            }
+        ];
+
+        // State variables
+        let currentCategory = "All";
+        let searchQuery = "";
+
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Render Cards
+        function renderScripts() {
+            const grid = document.getElementById('scriptsGrid');
+            grid.innerHTML = '';
+
+            const filtered = scriptsData.filter(script => {
+                const matchesCategory = currentCategory === "All" || 
+                                        (currentCategory === "Popular" && script.isPopular) || 
+                                        script.category === currentCategory;
+                const matchesSearch = script.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      script.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-500">
+                        <i data-lucide="info" class="w-12 h-12 mx-auto mb-4 stroke-1"></i>
+                        <p class="text-lg font-semibold">No scripts found</p>
+                        <p class="text-sm">Try adjusting your keywords or category.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            filtered.forEach(script => {
+                const statusColor = script.status === "Undetected" ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-amber-500/10 text-amber-400 border-amber-500/20";
+                const tagsHtml = script.tags.map(tag => `<span class="bg-dark-950 text-slate-400 text-[11px] px-2.5 py-1 rounded-md border border-slate-800">${tag}</span>`).join('');
+                
+                const card = document.createElement('div');
+                card.className = "bg-dark-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-brand-500/60 transition-all duration-300 flex flex-col group";
+                card.innerHTML = `
+                    <!-- Game Thumbnail -->
+                    <div class="relative h-44 overflow-hidden bg-slate-800">
+                        <img src="${script.image}" alt="${script.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+                        <span class="absolute top-4 left-4 text-[11px] font-semibold px-2.5 py-1 rounded-md border backdrop-blur-md ${statusColor}">
+                            ${script.status}
+                        </span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-6 flex flex-col flex-grow justify-between space-y-5">
+                        <div class="space-y-3">
+                            <h3 class="font-heading font-bold text-xl text-white group-hover:text-brand-400 transition-colors">${script.title}</h3>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${tagsHtml}
+                            </div>
+                        </div>
+
+                        <button onclick="openModal('${script.title}', '${script.loadstring}')" class="w-full py-3 rounded-xl bg-dark-950 hover:bg-brand-600 text-slate-300 hover:text-white border border-slate-800 hover:border-brand-500 font-semibold transition-all duration-300 flex items-center justify-center gap-2">
+                            <i data-lucide="code-2" class="w-4 h-4"></i>
+                            <span>Get Script</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Search Input Event
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderScripts();
+        });
+
+        // Category Filter
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // Update UI active states
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                if (btn.innerText === (category === "All" ? "All Games" : category)) {
+                    btn.className = "category-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 bg-brand-600 text-white transition-all";
+                } else {
+                    btn.className = "category-btn px-5 py-2 rounded-xl text-sm font-medium border border-slate-800 bg-dark-900 text-slate-400 hover:text-white hover:border-slate-700 transition-all";
+                }
+            });
+
+            renderScripts();
+        }
+
+        // Scroll helper
+        function scrollToScripts() {
+            document.getElementById('scripts').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Modal Handlers
+        let selectedLoadstring = "";
+        function openModal(title, loadstring) {
+            selectedLoadstring = loadstring;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('scriptCodeBlock').innerText = loadstring;
+            
+            const modal = document.getElementById('scriptModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.transform').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('scriptModal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                resetCopyBtn();
+            }, 300);
+        }
+
+        // Copy Code to Clipboard
+        function copyCode() {
+            navigator.clipboard.writeText(selectedLoadstring).then(() => {
+                // Change Modal Copy Button State
+                const btnText = document.getElementById('copyBtnText');
+                const btnIcon = document.getElementById('copyBtnIcon');
+                btnText.innerText = "Copied!";
+                btnIcon.setAttribute('data-lucide', 'check');
+                lucide.createIcons();
+
+                // Show Toast
+                showToast();
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        function resetCopyBtn() {
+            const btnText = document.getElementById('copyBtnText');
+            const btnIcon = document.getElementById('copyBtnIcon');
+            if (btnText) btnText.innerText = "Copy Code";
+            if (btnIcon) btnIcon.setAttribute('data-lucide', 'copy');
+            lucide.createIcons();
+        }
+
+        // Toast Handler
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // FAQ Toggles
+        function toggleFaq(index) {
+            const ans = document.getElementById(`faq-ans-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            if (ans.style.maxHeight && ans.style.maxHeight !== '0px') {
+                ans.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                ans.style.maxHeight = ans.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Initial Load
+        window.addEventListener('load', () => {
+            renderScripts();
+        });
+    </script>
+</body>
+</html>
